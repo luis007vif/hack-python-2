@@ -3,14 +3,15 @@ text: [{"a":"b"},{"c","d"},{"e":"f"}] output => [{"1":"2"},{"3","4"},{"5":"6"}]
 """
 
 
-def fn_hack_9(s):
-    dictionary = {}
-    for key, value in s.items():
-        if key == "foo":
-            new_value = value.capitalize().replace("k", "")
-            dictionary["Foo"] = new_value
-    return dictionary
+def fn_hack_10(s):
+    result = []
+    count = 1
+    for item in s:
+        new_dict = {}
+        for k, v in item.items():
+            new_dict[str(count)] = str(count + 1) if isinstance(v, str) else str(count)
+            count += 2
+        result.append(new_dict)
+    return result
 
-result = {"foo":"fookziman","bar":"barziman"}
-dictionary = fn_hack_9(result)
-print(dictionary)
+print(fn_hack_10([{"a":"b"},{"c":"d"},{"e":"f"}]))
